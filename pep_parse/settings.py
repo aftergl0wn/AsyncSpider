@@ -1,6 +1,12 @@
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+NAME = 'pep'
+DOMAINS = ['peps.python.org']
+START_URLS = ['https://peps.python.org/']
+
+DATA = {}
+
+BASE_DIR = Path(__file__).parent.parent
 
 BOT_NAME = 'pep_parse'
 

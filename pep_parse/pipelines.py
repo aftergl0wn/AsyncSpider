@@ -1,4 +1,7 @@
-from pep_parse.constants import data, filename
+import csv
+from datetime import datetime
+
+from pep_parse.settings import BASE_DIR, DATA
 
 
 class PepParsePipeline:
@@ -6,16 +9,16 @@ class PepParsePipeline:
         pass
 
     def process_item(self, item, spider):
-        if item['status'] in data:
-            data[item['status']] += 1
-        else:
-            data.setdefault(item['status'], 1)
-        data['total'] += 1
+        DATA[item['status']] = DATA.setdefault(item['status'], 0) + 1
         return item
 
     def close_spider(self, spider):
+        filename = (
+            f'{BASE_DIR}/results/status_summary_'
+            f'{datetime.strftime(datetime.now(), "%Y-%m-%d_%H-%M-%S")}.csv'
+        )
         with open(filename, mode='w', encoding='utf-8') as f:
             f.write('Статус,Количество\n')
-            for key, value in data.items():
-                f.write(f'{key},{value}\n')
-            f.write(f'Total,{data["total"]}\n')
+            writer = csv.writer(f, dialect='unix')
+            writer.writerows(DATA.items())
+            f.write(f'Total,{sum(DATA.values())}\n')
