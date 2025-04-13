@@ -1,16 +1,17 @@
-# Проект парсинга scrapy_parser_pep
+# Проект AsyncSpider
 Автор: Анастасия Давыдова  
+Асинхронный парсер документации, который собирает информацию с нескольких страниц сайта.  
 
 ### Как запустить проект:
 
 Клонировать репозиторий и перейти в него в командной строке:
 
 ```
-git clone https://github.com/aftergl0wn/scrapy_parser_pep.git
+git clone https://github.com/aftergl0wn/AsyncSpider.git
 ```
 
 ```
-cd scrapy_parser_pep
+cd AsyncSpider
 ```
 
 Cоздать и активировать виртуальное окружение:
